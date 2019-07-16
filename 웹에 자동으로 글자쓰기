@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Text Animation</title>
+<script>
+
+      var slideCount=0;
+      var speed = 250;
+      
+window.onload = function() {
+        document.getElementById("slow").onclick = changeSpeed;
+        document.getElementById("normal").onclick = changeSpeed;
+        document.getElementById("fast").onclick = changeSpeed;
+        };
+
+function run(){
+   longStr = document.getElementById("longText").innerHTML;   
+   slide= longStr.split("");
+   
+   for(var a = 0; a<slide.length-1; a++){
+    slide[a+1] = slide[a].concat(slide[a+1]);
+   }
+
+   timer = setInterval(displaySlide, 250, slide);
+   document.getElementById("run").disabled = true;
+}
+
+function displaySlide(slide) {
+  document.getElementById("displayArea").innerHTML= 
+  slide[slideCount % slide.length];
+  slideCount++; 
+}
+
+function stop() {
+   clearInterval(timer); 
+   document.getElementById("run").disabled = 
+   false;
+}
+
+function changeSpeed() {
+        speed = this.value;
+        clearInterval(timer);
+        timer = setInterval(displaySlide, speed, slide);
+ }
+
+</script>
+</head>
+<body>
+  <p id = "longText">WELCOME</p>
+  <button id = "run" onclick="run()">Run</button> 
+  <button id = "stop" onclick="stop()">Stop</button> 
+  <label><input id="slow" name="speed" value="800" type="radio"> Slow </label> 
+  <label><input id="normal" name="speed" value="250" checked="checked"  type="radio"> Normal </label> 
+  <label><input id="fast" name="speed" value="50"  type="radio"> Fast</label>
+  <div id="displayArea"> </div>
+</body>
+</html>
