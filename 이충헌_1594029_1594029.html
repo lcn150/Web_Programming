@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=EUC-KR" http-equiv="content-type">
+    <script>
+      function myFocus(x) {
+        x.style.background = "yellow";
+      }
+      function myBlur(x){
+        x.style.background = "white";
+      }
+
+      // (2) ==================================
+      function light() {
+        var imgSrc=document.getElementById('mybolb').src;
+
+        if(imgSrc.search("off")<0){
+          document.getElementById("mybolb").src = "http://www.w3schools.com/js/bulboff.gif";
+        }
+        else{
+          document.getElementById("mybolb").src = "http://www.w3schools.com/js/bulbon.gif";
+        }
+
+      }
+      // (3) ==================================
+      function myText(x) {
+        document.getElementById("testArea").style.color = 
+        x.value;
+
+        document.getElementById("textcolor").innerHTML = 
+        x.value;
+
+      } 
+      function myBackground(x) {
+        document.getElementById("testArea").style.background = 
+        x.value;
+        document.getElementById("bgcolor").innerHTML = 
+        x.value;
+
+      }
+      // (4) ==================================
+      function myRandomNo() {
+        nums = "";
+        for(i=0; i<4; i++){
+          nums +=Math.round(Math.random()*50)+50+",";
+        }
+        document.getElementById("myNumber").innerHTML = 
+        nums;
+        }
+
+      
+      // (5) ==================================
+      function show(obj) {
+        obj.innerHTML = "Wish you a GOOD LUCK !";
+        obj.style.backgroundColor = "lightgreen";
+
+      }
+      function hide(obj) {
+        
+        obj.style.backgroundColor = "lightpink";
+
+      }   
+      // (6) ==================================
+       function calculate() {
+        var i,j;
+        var top;
+        i = document.getElementById("tax").value;
+        j = document.getElementById("price").value;
+        top = parseFloat(i) + parseFloat(i*j/100);
+        document.getElementById("total").innerHTML = " $" + top;
+      }
+
+      // (7) ======================================
+        function blinking() {
+        var h;
+        h = document.getElementById("speed").value;
+        parseInt(h);
+        h--;
+        document.getElementById("speed").value = h;
+        if (h==0){
+          alert("Blinking Sign");
+          clearInterval(message);
+        }
+      }
+      function stoptimer() {
+       message = setInterval(go,1000);
+      }
+
+      // (8) ==================================
+      function convert() {
+        var p;
+        var z;
+        p = document.getElementById("convert").value;
+        z = document.getElementById("temp").value;
+        if(p=="F"){
+          document.getElementById("answer").innerHTML = z*(9/5)+32;
+                  }
+        else if(p=="C"){
+          document.getElementById("answer").innerHTML = (z-32)*5/9;
+        }
+      }
+      
+      // (9) ==================================
+      var txtsize = 15;
+      function bigger() {
+        var c;
+        var g;
+        document.getElementById("yy").innerHTML  = c*g;
+        document.getElementById("tts").innerHTML = x.value;
+        document.getElementById("ppt").style.backgroundColor = y.value;
+
+      }
+
+      function smaller() {
+        document.getElementById('inside').innerHTML;
+        var x = 15;
+        var y = 10;
+        var z;
+        document.getElementById("qw").innerHTML = z;
+
+
+
+      }
+     
+    </script> 
+
+    <title>WP_Final(2014)</title>
+  
+  </head>
+  
+  <body>
+    <!--          -->
+    <b> (1) When the input field gets focus, background-color change into
+      yellow and return to white and transformed to uppercase when blurred. <br>
+      Enter your name: 
+      First <input onfocus="myFocus(this)" onblur="myBlur(this)" type="text">
+      Last <input onfocus="myFocus(this)" onblur="myBlur(this)" type="text">
+    </b>
+    [ Hint : toUpperCase() method ]
+    <hr> 
+    <!--          -->
+    <b> (2) 
+      <img src="http://www.w3schools.com/js/bulboff.gif" id="mybolb" width="40" height="70">
+      <input onmousedown="light('on')" onmouseup="light('off')" value="Switch" type="button">
+    </b>
+      [Hint: bulbon image is at http://www.w3schools.com/js/bulbon.gif & x.match() method]
+
+    <hr> 
+    <!--          -->
+    <b> (3) </b>
+      <div id="testArea" style="width:100; height:60; border:1px solid;"> 
+        <b> Select Text Color 
+        <input name="color" onchange="myText(this)" type="color"> : 
+        <span id="textColor"> </span> <br>
+        Select Background Color 
+        <input name="color" onchange="myBackground(this)" type="color"> : 
+        <span id="bgColor"> </span> <br>
+        </b>
+      </div>
+    <hr> 
+<!--          -->
+    <b> (4) Random Number (4 numbers in 50 &le; x &lt; 100) generator : 
+      <input value="Give Me!" onclick="myRandomNo()" type="button">
+      <span id="myNumber"> 00, 00, 00, 00</span>
+    </b>
+    [ Hint: Math.random(), Math.floor() ] 
+    <hr> 
+<!--          -->
+    <b>(5) 
+      <span onmouseover="show(this)" onmouseout="hide(this)" id="hidden_message" style="background-color:lightpink; color:lightpink; width:200px; height:20px; padding:5px; border:1px solid">
+      Wish you a GOOD LUCK ! 
+      </span>
+    </b>
+    <hr>
+<!--          -->
+    <b> (6) Tax Calculator : 
+      Price ($) <input id="price" size="6" type="text"> 
+      Tax (%) <input id="tax" size="6" type="text">  </b> 
+      <input value="Calulate" onclick="calculate();" type="button"> 
+      <b> Your total : <span id="total"> $0.00 </span> </b>
+      [ Hint: parseFloat() ] 
+    <hr>
+<!--          -->
+    <b> (7) Blinking : </b> 
+      fast <input id="speed" type="range" name="speed" min="50" max="500" step="50" value="250" > slow
+      <button onclick="blinking()" > Start </button>
+      <button onclick="stoptimer()" > Stop </button>
+      <b> <span id="message" > !!! BLINKING SIGN !!! </span> </b> 
+      [ Hint: fastest = 50 msec, slowest = 500 msec interval]
+    <hr>
+<!--          -->
+    <b>(8) Temp Converter </b> :
+    <input id="temp" size="5" type="text">
+    <select id="convert">
+      <option value="CtoF"> °C to °F</option>
+      <option value="FtoC"> °F to °C</option>
+    </select>
+    <button onclick="convert()"> Calculate </button>
+    <input id="answer" size="6" type="text">
+    [ Hint: °F = (°C×9/5)+32 ; °C = (°F-32)×5/9 ; Math.round(value *10)/10 ]
+    <hr>
+<!--          -->
+    <b> (9) Growing Text : 
+    <button onclick="bigger()"> Bigger +5 </button> 
+    <button onclick="smaller()"> Smaller -5 </button>
+    <span id="msgfield"> Yeh~~  Summer Vacation ! </span> 
+    </b> 
+    [ Hint : *.style.fontSize = txtsize+"px" ]
+    <br>
+    <hr> 
+
+  </body>
+</html>
